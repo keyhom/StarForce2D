@@ -1,0 +1,32 @@
+{
+  "ver": "2.3.1",
+  "uuid": "62691563-f3b8-4998-811d-96fc25564a48",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "platformSettings": {},
+  "subMetas": {
+    "Asteroid_03": {
+      "ver": "1.0.4",
+      "uuid": "7e23fd4d-486f-4136-86c2-a37a2b5d4280",
+      "rawTextureUuid": "62691563-f3b8-4998-811d-96fc25564a48",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 32,
+      "trimY": 64,
+      "width": 448,
+      "height": 384,
+      "rawWidth": 512,
+      "rawHeight": 512,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

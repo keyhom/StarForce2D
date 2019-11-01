@@ -1,0 +1,10 @@
+﻿#,阵营关系表,,,,,,,,
+#,Id,,CampType,Player,Enemy,Neutral,Player2,Enemy2,Neutral2
+#,int,,string,string,string,string,string,string,string
+#,编号,备注,阵营纵列,玩家1,敌方1,中立1,玩家2,敌方2,中立2
+,1,,Player,Friendly,Hostile,Neutral,Hostile,Hostile,Neutral
+,2,,Enemy,Hostile,Friendly,Neutral,Hostile,Hostile,Neutral
+,3,,Neutral,Neutral,Neutral,Friendly,Neutral,Neutral,Hostile
+,4,,Player2,Hostile,Hostile,Neutral,Friendly,Hostile,Neutral
+,5,,Enemy2,Hostile,Hostile,Neutral,Hostile,Friendly,Neutral
+,6,,Neutral2,Neutral,Neutral,Hostile,Neutral,Neutral,Neutral

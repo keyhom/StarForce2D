@@ -1,0 +1,9 @@
+﻿#,声音配置表,,,,,,,
+#,Id,,AssetName,Priority,Loop,Volume,SpatialBlend,MaxDistance
+#,int,,string,int,bool,float,float,float
+#,声音编号,备注,资源名称,优先级（默认0，128最高，-128最低）,是否循环,音量（0~1）,声音空间混合量,声音最大距离
+,10000,Hero Bullet,weapon_player,0,FALSE,1,0,100
+,10001,Enemy Bullet,weapon_enemy,0,FALSE,1,0,100
+,20000,Hero Explosion,explosion_player,0,FALSE,1,0,100
+,20001,Enemy Explosion,explosion_enemy,0,FALSE,1,0,100
+,20002,Asteroid Explosion,explosion_asteroid,0,FALSE,1,0,100
