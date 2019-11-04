@@ -1492,6 +1492,7 @@
       "__id__": 47
     },
     "_enabled": true,
+    "m_pResourceLoaderName": "DefaultResourceLoader",
     "_id": "69PYfvhWxEN67xjDLMWn02"
   },
   {
@@ -1748,7 +1749,8 @@
     "avoidBeingReplacedBySamePriority": false,
     "mute": false,
     "volume": 1,
-    "soundAgentCount": 2
+    "soundAgentCount": 2,
+    "autoRelease": false
   },
   {
     "__type__": "SoundGroupInfo",
@@ -1756,7 +1758,8 @@
     "avoidBeingReplacedBySamePriority": false,
     "mute": false,
     "volume": 1,
-    "soundAgentCount": 32
+    "soundAgentCount": 32,
+    "autoRelease": true
   },
   {
     "__type__": "SoundGroupInfo",
@@ -1764,7 +1767,8 @@
     "avoidBeingReplacedBySamePriority": false,
     "mute": false,
     "volume": 1,
-    "soundAgentCount": 4
+    "soundAgentCount": 4,
+    "autoRelease": true
   },
   {
     "__type__": "cc.PrefabInfo",
