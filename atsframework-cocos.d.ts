@@ -744,6 +744,88 @@ declare module "SoundComponent" {
 
 } // module SoundComponent
 
+declare module "SettingComponent" {
+    import FrameworkComponent from "FrameworkComponent";
+
+    export abstract class SettingHelperBase extends cc.Component implements atsframework.ISettingHelper {
+
+        abstract load(): boolean;
+
+        abstract save(): boolean;
+
+        abstract hasSetting(name: string): boolean;
+
+        abstract removeSetting(name: string): void;
+
+        abstract removeAllSettings(): void;
+
+        abstract getBoolean(name: string): boolean;
+        abstract getBoolean(name: string, defaultValue: boolean): boolean;
+
+        abstract setBoolean(name: string, value: boolean): void;
+
+        abstract getInteger(name: string): number;
+        abstract getInteger(name: string, defaultValue: number): number;
+
+        abstract setInteger(name: string, value: number): void;
+
+        abstract getFloat(name: string): number;
+        abstract getFloat(name: string, defaultValue: number): number;
+
+        abstract setFloat(name: string, value: number): void;
+
+        abstract getString(name: string): string;
+        abstract getString(name: string, defaultValue: string): string;
+
+        abstract setString(name: string, value: string): void;
+
+        abstract getObject<T>(type: new () => T, name: string): any;
+        abstract getObject<T>(type: new () => T, name: string, defaultValue: any): any;
+
+        abstract setObject(name: string, obj: any): void;
+
+    } // class SettingHelperBase
+
+    export default class SettingComponent extends FrameworkComponent {
+
+        onLoad(): void;
+
+        start(): void;
+
+        save(): void;
+
+        hasSetting(name: string): boolean;
+
+        removeSetting(name: string): void;
+
+        getBoolean(name: string): boolean;
+        getBoolean(name: string, defaultValue: boolean): boolean;
+
+        setBoolean(name: string, value: boolean): void;
+
+        getInteger(name: string): number;
+        getInteger(name: string, defaultValue: number): number;
+
+        setInteger(name: string, value: number): void;
+
+        getFloat(name: string): number;
+        getFloat(name: string, defaultValue: number): number;
+
+        setFloat(name: string, value: number): void;
+
+        getString(name: string): string;
+        getString(name: string, defaultValue: string): string;
+
+        setString(name: string, value: string): void;
+
+        getObject<T>(type: new() => T, name: string): T;
+        getObject<T>(type: new() => T, name: string, defaultValue: T): T;
+
+        setObject<T>(name: string, value: T): void;
+    } // class SettingComponent
+
+} // module SettingComponent
+
 declare module "UIForm" {
     import UIFormLogic from "UIFormLogic";
 

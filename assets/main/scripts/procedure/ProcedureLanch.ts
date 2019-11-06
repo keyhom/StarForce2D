@@ -38,7 +38,8 @@ export default class ProcedureLanuch extends ProcedureBase {
     }
 
     private initLanguageSettings(): void {
-        i18n.init('en_US'); // TODO: Accquire the lang from persistence storage.
+        let v_sLanguage: string = GameEntry.setting.getString('language', 'en_US');
+        i18n.init(v_sLanguage);
         i18n.updateSceneRenderers();
     }
 

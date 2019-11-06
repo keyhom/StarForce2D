@@ -10,6 +10,7 @@ import ResourceComponent from "ResourceComponent";
 import BuiltinDataComponent from "./builtinData/BuiltinDataComponent";
 import SceneComponent from "SceneComponent";
 import SoundComponent from "SoundComponent";
+import SettingComponent from "SettingComponent";
 import DataTableComponent from "DataTableComponent";
 import EntityComponent from "EntityComponent";
 import SoundExtension from "./sound/SoundExtension";
@@ -87,6 +88,10 @@ export default class GameEntry extends cc.Component {
         return this.m_pCacheArr[22] as EntityExtension;
     }
 
+    static get setting(): SettingComponent {
+        return this.m_pCacheArr[16] as SettingComponent;
+    }
+
     onLoad(): void {
         cc.game.addPersistRootNode(this.node);
     }
@@ -108,7 +113,7 @@ export default class GameEntry extends cc.Component {
         GameEntry.m_pCacheArr.push(null); // 13.ReferencePool
         GameEntry.m_pCacheArr.push(FrameworkComponent.getComponent(ResourceComponent)); // 14.ResourceComponent
         GameEntry.m_pCacheArr.push(FrameworkComponent.getComponent(SceneComponent)); // 15.SceneComponent
-        GameEntry.m_pCacheArr.push(null); // 16.SettingComponent
+        GameEntry.m_pCacheArr.push(FrameworkComponent.getComponent(SettingComponent)); // 16.SettingComponent
         GameEntry.m_pCacheArr.push(FrameworkComponent.getComponent(SoundComponent)); // 17.SoundComponent
         GameEntry.m_pCacheArr.push(FrameworkComponent.getComponent(UIComponent)); // 18.UIComponent
         GameEntry.m_pCacheArr.push(null); // 19.WebRequestComponent
