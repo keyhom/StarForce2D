@@ -1,0 +1,4 @@
+[submodule "packages/atsframework-cocos"]
+	path = packages/atsframework-cocos
+	url = https://keyhom@github.com/keyhom/ATsFramework-Cocos.git
+	branch = develop
