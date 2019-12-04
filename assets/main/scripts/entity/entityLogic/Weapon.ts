@@ -37,7 +37,7 @@ export default class Weapon extends GameEntity {
         }
 
         this.name = `Weapon of ${parentEntity.name}`;
-        this.node.setPosition(cc.Vec3.ZERO);
+        this.node.setPosition(cc.Vec2.ZERO);
     }
 
     protected onUpdate(elapsed: number, realElapsed: number): void {
@@ -62,14 +62,14 @@ export default class Weapon extends GameEntity {
         //         GameEntry.entityExt.showBullet(v_pBulletData);
         //     }
         // } else {
-            v_pBulletData = this.generateBulletData(new cc.Vec3(v_pWorldSpacePos.x, v_pWorldSpacePos.y, 0));
+            v_pBulletData = this.generateBulletData(cc.v2(v_pWorldSpacePos.x, v_pWorldSpacePos.y));
             GameEntry.entityExt.showBullet(v_pBulletData);
         // }
 
         GameEntry.soundExt.playSound(this.m_pWeaponData.bulletSoundId);
     }
 
-    protected generateBulletData(pos: cc.Vec3): BulletData {
+    protected generateBulletData(pos: cc.Vec2): BulletData {
         let v_pBulletData: BulletData = new BulletData(EntityGenerateSerialId(), this.m_pWeaponData.bulletId, this.m_pWeaponData.ownerId, this.m_pWeaponData.ownerCamp, this.m_pWeaponData.attack, this.m_pWeaponData.bulletSpeed);
         v_pBulletData.position = pos;
         return v_pBulletData;

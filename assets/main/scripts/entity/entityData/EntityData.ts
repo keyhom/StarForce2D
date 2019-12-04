@@ -4,7 +4,7 @@ export default abstract class EntityData extends cc.Object {
 
     private m_Id: number = 0;
     private m_iTypeId: number = 0;
-    private m_rPosition: cc.Vec3 = cc.Vec3.ZERO;
+    private m_rPosition: cc.Vec2 = cc.Vec2.ZERO;
     private m_pRotation: cc.Quat = new cc.Quat();
 
     constructor(entityId: number, typeId: number) {
@@ -21,7 +21,7 @@ export default abstract class EntityData extends cc.Object {
         return this.m_iTypeId;
     }
 
-    get position(): cc.Vec3 {
+    get position(): cc.Vec2 {
         return this.m_rPosition;
     }
 

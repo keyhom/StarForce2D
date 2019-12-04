@@ -44,7 +44,7 @@ export default class Asteroid extends TargetableObject {
         super.onDead(attacker);
 
         let v_pEffectData: EffectData = new EffectData(EntityGenerateSerialId(), this.m_pAsteroidData.deadEffectId);
-        v_pEffectData.position = new cc.Vec3(this.node.position.x, this.node.position.y, 0);
+        v_pEffectData.position = cc.v2(this.node.position.x, this.node.position.y);
         GameEntry.entityExt.showEffect(v_pEffectData);
 
         GameEntry.soundExt.playSound(this.m_pAsteroidData.deadSoundId);

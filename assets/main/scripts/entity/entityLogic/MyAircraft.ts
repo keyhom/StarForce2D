@@ -10,7 +10,7 @@ export default class MyAircraft extends Aircraft {
     private m_pMyAircraftData: MyAircraftData = null;
 
     private m_pPlayerMoveBoundary: cc.Rect = new cc.Rect();
-    private m_pTargetPosition: cc.Vec3 = cc.Vec3.ZERO;
+    private m_pTargetPosition: cc.Vec3 = new cc.Vec3(0, 0, 0);
 
     @property({ displayName: 'Touch Pad', type: AircraftTouchPad })
     private m_pTouchPad: AircraftTouchPad = null;

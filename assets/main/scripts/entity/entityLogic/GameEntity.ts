@@ -23,8 +23,8 @@ export default abstract class GameEntity extends EntityLogic {
         }
 
         this.name = `[GameEntity ${this.id}]`;
-        this.node.setPosition(this.m_pEntityData.position);
-        this.node.setScale(cc.Vec3.ONE);
+        this.node.setPosition(this.m_pEntityData.position || cc.Vec2.ZERO);
+        this.node.setScale(1);
     }
 
 } // class GameEntity

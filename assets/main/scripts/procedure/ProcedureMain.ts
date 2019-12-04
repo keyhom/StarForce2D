@@ -16,7 +16,8 @@ export default class ProcedureMain extends ProcedureBase {
     private m_bGoToMenu: boolean = false;
     private m_fGoToMenuDelaySeconds: number = 0;
 
-    private readonly m_pGames: Map<GameMode, GameBase> = new Map();
+    private m_pGames: { [key: number/*:GameMode*/]: GameBase } = {};
+    // private readonly m_pGames: Map<GameMode, GameBase> = new Map();
     private m_pCurrentGame!: GameBase;
 
     gotoMenu(): void {
@@ -27,14 +28,16 @@ export default class ProcedureMain extends ProcedureBase {
         super.onInit(owner);
 
         // init game.
-        this.m_pGames.set(GameMode.Survival, new SurvivalGame());
+        // this.m_pGames.set(GameMode.Survival, new SurvivalGame());
+        this.m_pGames[GameMode.Survival] = new SurvivalGame();
     }
 
     protected onDestroy(owner: ProcedureOwner): void {
         super.onDestroy(owner);
 
         // clear game.
-        this.m_pGames.clear();
+        // this.m_pGames.clear();
+        this.m_pGames = {};
     }
 
     protected onEnter(owner: ProcedureOwner): void {
@@ -45,7 +48,8 @@ export default class ProcedureMain extends ProcedureBase {
         this.m_bGoToMenu = false;
         let v_rGameMode: GameMode = owner.getData<GameMode>('game_mode');
 
-        this.m_pCurrentGame = this.m_pGames.get(v_rGameMode);
+        // this.m_pCurrentGame = this.m_pGames.get(v_rGameMode);
+        this.m_pCurrentGame = this.m_pGames[v_rGameMode];
         if (this.m_pCurrentGame)
             this.m_pCurrentGame.initialize();
         else

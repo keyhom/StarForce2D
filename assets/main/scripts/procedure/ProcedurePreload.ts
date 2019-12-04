@@ -15,29 +15,32 @@ import DRUIForm from "../datatable/DRUIForm";
 import DRWeapon from "../datatable/DRWeapon";
 import DRAsteroid from "../datatable/DRAsteroid";
 import DRCamp from "../datatable/DRCamp";
+import { GameMode } from "../game/GameBase";
 
 const ProcedureBase = atsframework.ProcedureBase;
 type ProcedureOwner = atsframework.Fsm<atsframework.ProcedureManager>;
 
+type DataRowGenerator = new () => atsframework.IDataRow;
+
 @procedure
 export default class ProcedurePreload extends ProcedureBase {
 
-    private m_pDataTableNames: Map<string, new () => atsframework.IDataRow> = new Map<string, new () => atsframework.IDataRow>([
-        ['aircraft', DRAircraft],
-        ['armor', DRArmor],
-        ['asteroid', DRAsteroid],
-        ['camp', DRCamp],
-        ['entity', DREntity],
-        ['music', DRMusic],
-        ['scene', DRScene],
-        ['sound', DRSound],
-        ['thruster', DRThruster],
-        ['uiform', DRUIForm],
-        ['uisound', DRUISound],
-        ['weapon', DRWeapon],
-    ]);
+    private m_pDataTableNames: { [key: string]: DataRowGenerator } = {
+        'aircraft': DRAircraft,
+        'armor': DRArmor,
+        'asteroid': DRAsteroid,
+        'camp': DRCamp,
+        'entity': DREntity,
+        'music': DRMusic,
+        'scene': DRScene,
+        'sound': DRSound,
+        'thruster': DRThruster,
+        'uiform': DRUIForm,
+        'uisound': DRUISound,
+        'weapon': DRWeapon,
+    };
 
-    private m_pLoadedFlag: Map<string, boolean> = new Map();
+    private m_pLoadedFlag: { [key: string]: boolean } = {};
 
     protected onInit(owner: ProcedureOwner): void {
         super.onInit(owner);
@@ -55,7 +58,7 @@ export default class ProcedurePreload extends ProcedureBase {
         GameEntry.event.on(LoadDataTableSuccessEventId, this.onLoadDataTableSuccess, this);
         GameEntry.event.on(LoadDataTableFailureEventId, this.onLoadDataTableFailure, this);
 
-        this.m_pLoadedFlag.clear();
+        this.m_pLoadedFlag = {};
 
         this.preloadResources();
     }
@@ -63,7 +66,7 @@ export default class ProcedurePreload extends ProcedureBase {
     protected onLeave(owner: ProcedureOwner, shutdown?: boolean): void {
         super.onLeave(owner, shutdown);
 
-        this.m_pLoadedFlag.clear();
+        this.m_pLoadedFlag = {};
 
         GameEntry.event.off(LoadConfigSuccessEventId, this.onLoadConfigSuccess);
         GameEntry.event.off(LoadConfigFailureEventId, this.onLoadConfigFailure);
@@ -74,12 +77,13 @@ export default class ProcedurePreload extends ProcedureBase {
     protected onUpdate(owner: ProcedureOwner, elapsed: number, realElapsed: number): void {
         super.onUpdate(owner, elapsed, realElapsed);
 
-        for (const value of this.m_pLoadedFlag.values()) {
-            if (!value)
+        for (const k in this.m_pLoadedFlag) {
+            if (!this.m_pLoadedFlag[k])
                 return;
         }
 
         owner.setData("next_scene_id", parseInt(GameEntry.config.getConfig<string>("Scene.Menu")));
+
         this.changeState(owner, ProcedureChangeScene);
     }
 
@@ -88,8 +92,8 @@ export default class ProcedurePreload extends ProcedureBase {
         this.loadConfig("default_config");
 
         // Preload data tables.
-        for (const entry of this.m_pDataTableNames.entries()) {
-            this.loadDataTable(entry[0], entry[1]);
+        for (const k in this.m_pDataTableNames) {
+            this.loadDataTable(k, this.m_pDataTableNames[k]);
         }
 
         // Preload dictionaries.
@@ -100,14 +104,13 @@ export default class ProcedurePreload extends ProcedureBase {
     }
 
     private loadConfig(configName: string): void {
-        // this.m_pLoadedFlag[`Config.${configName}`] = false;
-        this.m_pLoadedFlag.set(`Config.${configName}`, false);
+        this.m_pLoadedFlag[`Config.${configName}`] = false;
 
         GameEntry.config.loadConfig(configName, `main/configs/${configName}`, atsframework.LoadType.Text, this);
     }
 
     private loadDataTable(dataTableName: string, rowType: new () => atsframework.IDataRow): void {
-        this.m_pLoadedFlag.set(`DataTable.${dataTableName}`, false);
+        this.m_pLoadedFlag[`DataTable.${dataTableName}`] = false;
         GameEntry.dataTable.loadDataTable(rowType, dataTableName, null, `main/data/${dataTableName}`, atsframework.LoadType.Text, 0, this);
     }
 
@@ -124,7 +127,7 @@ export default class ProcedurePreload extends ProcedureBase {
             return;
         }
 
-        this.m_pLoadedFlag.set(`Config.${e.configName}`, true);
+        this.m_pLoadedFlag[`Config.${e.configName}`] = true;
         cc.log(`Load config '${e.configName}' OK.`);
     }
 
@@ -140,7 +143,7 @@ export default class ProcedurePreload extends ProcedureBase {
         if (e.userData != this)
             return;
 
-        this.m_pLoadedFlag.set(`DataTable.${e.dataTableName}`, true);
+        this.m_pLoadedFlag[`DataTable.${e.dataTableName}`] = true;
         cc.log(`Load DataTable '${e.dataTableName}' from '${e.dataTableAssetName}' OK.`);
     }
 
