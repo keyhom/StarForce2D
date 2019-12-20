@@ -114,7 +114,56 @@ declare namespace atsframework {
     // DataNodeManager
     ////////////////////////////////////////////////////////////////////////////
 
+    export class DataNode {
+        public static create(name: string, parent: DataNode | null): DataNode;
+
+        name: string;
+        fullName: string;
+        parent: DataNode | null;
+        childCount: number;
+
+        getData<T>(): T;
+        setData(data: any): void;
+
+        getChild(name: string): DataNode | null;
+        getChild(index: number): DataNode | null;
+
+        getOrAddChild(name: string): DataNode;
+        
+        getAllChild(): DataNode[];
+        getAllChild(results: DataNode[]): DataNode[];
+
+        removeChild(name: string): void;
+        removeChild(index: number): void;
+
+        destory(): void;
+        clear(): void;
+
+        toDataString(): string;
+        toString(): string;
+
+    } // class DataNode
+
     export class DataNodeManager extends FrameworkModule {
+
+        root: DataNode;
+
+        getData<T>(path: string): T;
+        getData<T>(path: string, node: DataNode): T;
+
+        setData<T>(path: string, data: T): void;
+        setData<T>(path: string, data: T, node: DataNode): void;
+
+        getNode(path: string): DataNode | null;
+        getNode(path: string, node: DataNode): DataNode | null;
+
+        getOrAddNode(path: string): DataNode;
+        getOrAddNode(path: string, node: DataNode): DataNode;
+
+        removeNode(path: string): void;
+        removeNode(path: string, node: DataNode): void;
+
+        clear(): void;
 
         protected update(elapsed: number, realElapsed: number): void;
         protected shutdown(): void;
@@ -1095,6 +1144,96 @@ declare namespace atsframework {
         resumeSound(serialId: number, fadeInSeconds: number): void;
 
     } // class SoundManager
+
+    ////////////////////////////////////////////////////////////////////////////
+    // SettingManager
+    ////////////////////////////////////////////////////////////////////////////
+
+    export interface ISettingHelper {
+
+        load(): boolean;
+
+        save(): boolean;
+
+        hasSetting(name: string): boolean;
+
+        removeSetting(name: string): void;
+
+        removeAllSettings(): void;
+
+        getBoolean(name: string): boolean;
+        getBoolean(name: string, defaultValue: boolean): boolean;
+        setBoolean(name: string, value: boolean): void;
+
+        getInteger(name: string): number;
+        getInteger(name: string, defaultValue: number): number;
+        setInteger(name: string, value: number): void;
+
+        getFloat(name: string): number;
+        getFloat(name: string, defaultValue: number): number;
+        setFloat(name: string, value: number): void;
+
+        getString(name: string): string;
+        getString(name: string, defaultValue: string): string;
+        setString(name: string, value: string): void;
+
+        getObject<T>(type: new () => T, name: string): any;
+        getObject<T>(type: new () => T, name: string, defaultValue: any): any;
+        setObject(name: string, obj: any): void;
+
+    } // interface ISettingHelper
+
+    /**
+     * Setting configured management.
+     */
+    export class SettingManager extends FrameworkModule {
+
+        settingHelper: ISettingHelper;
+
+        load(): boolean;
+
+        save(): boolean;
+
+        hasSetting(settingName: string): boolean;
+
+        removeSetting(settingName: string): void;
+
+        removeAllSettings(): void;
+
+        getBoolean(settingName: string): boolean;
+        getBoolean(settingName: string, defaultValue: boolean): boolean;
+
+        setBoolean(settingName: string, value: boolean): void;
+
+        getInteger(settingName: string): number;
+        getInteger(settingName: string, defaultValue: number): number;
+
+        setInteger(settingName: string, value: number): void;
+
+        getFloat(settingName: string): number;
+        getFloat(settingName: string, defaultValue: number): number;
+
+        setFloat(settingName: string, value: number): void;
+
+        getString(settingName: string): string;
+        getString(settingName: string, defaultValue: string): string;
+
+        setString(settingName: string, value: string): void;
+
+        getObject<T>(type: new () => T, settingName: string): T;
+        getObject<T>(type: new () => T, settingName: string, defaultValue: T | null): T;
+
+        setObject<T>(settingName: string, value: T | null): void;
+
+        protected update(elapsed: number, realElapsed: number): void {
+            // NOOP.
+        }
+
+        protected shutdown(): void {
+            // NOOP.
+        }
+
+    } // class SettingManager
 
     ////////////////////////////////////////////////////////////////////////////
     // UIManager

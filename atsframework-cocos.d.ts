@@ -86,7 +86,32 @@ declare module "ConfigComponent" {
 
 declare module "DataNodeComponent" {
     import FrameworkComponent from "FrameworkComponent";
-    export default class DataNodeComponent extends FrameworkComponent {}
+    export default class DataNodeComponent extends FrameworkComponent {
+
+        onLoad(): void;
+        start(): void;
+
+        root: atsframework.DataNode;
+
+        getData<T>(path: string): T;
+        getData<T>(path: string, node: atsframework.DataNode): T;
+
+        setData<T>(path: string, data: T): void;
+        setData<T>(path: string, data: T, node: atsframework.DataNode): void;
+
+        getNode(path: string): atsframework.DataNode;
+        getNode(path: string, node: atsframework.DataNode): atsframework.DataNode;
+
+        getOrAddNode(path: string): atsframework.DataNode;
+        getOrAddNode(path: string, node: atsframework.DataNode): atsframework.DataNode;
+
+        removeNode(path: string): void;
+        removeNode(path: string, node: atsframework.DataNode): void;
+
+        clear(): void;
+
+    } // class DataNodeComponent
+
 } // module DataNodeComponent
 
 declare module "DataRowBase" {
