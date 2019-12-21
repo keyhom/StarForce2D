@@ -34,5 +34,7 @@ window.i18n.languages['zh_CN'] = {
     "Setting.Sound": "音效",
     "Setting.UISound": "界面音效",
     "Setting.Language": "语言",
-    "Setting.LanguageTips": "更改语言需要重启游戏"
+    "Setting.LanguageTips": "更改语言需要重启游戏",
+    "MainForm.Score": "分数：",
+    "MainForm.Exit": "退出"
 };

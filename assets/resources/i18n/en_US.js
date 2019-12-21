@@ -34,5 +34,7 @@ window.i18n.languages['en_US'] = {
     "Setting.Sound": "Sound FX",
     "Setting.UISound": "UI Sound FX",
     "Setting.Language": "Language",
-    "Setting.LanguageTips": "Language change demands restarting."
+    "Setting.LanguageTips": "Language change demands restarting.",
+    "MainForm.Score": "Score: ",
+    "MainForm.Exit": "Exit"
 };

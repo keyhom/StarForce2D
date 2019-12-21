@@ -29,7 +29,7 @@ export default class SurvivalGame extends GameBase {
             let v_fRandomPy: number = Math.random() * (cc.view.getVisibleSize().height * .5) + cc.view.getVisibleSize().height + cc.view.getVisibleOrigin().y;
 
             let v_pAsteroidData: AsteroidData = new AsteroidData(EntityGenerateSerialId(), 60000 + Math.floor(Math.random() * v_pDtAsteroid.count));
-            v_pAsteroidData.position = new cc.Vec3(v_fRandomPx, v_fRandomPy, 0);
+            v_pAsteroidData.position = cc.v2(v_fRandomPx, v_fRandomPy);
 
             GameEntry.entityExt.showAsteroid(v_pAsteroidData);
         }

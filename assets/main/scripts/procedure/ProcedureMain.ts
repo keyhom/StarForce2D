@@ -3,6 +3,7 @@ import GameBase, { GameMode } from "../game/GameBase";
 import GameEntry from "../GameEntry";
 import ProcedureChangeScene from "./ProcedureChangeScene";
 import SurvivalGame from "../game/SurvivalGame";
+import { uiFormAssetName, UIFormId } from "../ui/UIFormId";
 
 const ProcedureBase = atsframework.ProcedureBase;
 
@@ -20,8 +21,11 @@ export default class ProcedureMain extends ProcedureBase {
     // private readonly m_pGames: Map<GameMode, GameBase> = new Map();
     private m_pCurrentGame!: GameBase;
 
-    gotoMenu(): void {
+    private m_iMainFormId: number;
+
+    gotoMenu(immediate: boolean = true): void {
         this.m_bGoToMenu = true;
+        this.m_fGoToMenuDelaySeconds = immediate ? GameOverDelayed : 0;
     }
 
     protected onInit(owner: ProcedureOwner): void {
@@ -54,6 +58,8 @@ export default class ProcedureMain extends ProcedureBase {
             this.m_pCurrentGame.initialize();
         else
             cc.error(`The game with mode '${v_rGameMode}' was not exist!`);
+
+        this.m_iMainFormId = GameEntry.ui.openUIForm(uiFormAssetName(UIFormId.MainForm), 'Default');
     }
 
     protected onLeave(owner: ProcedureOwner, shutdown?: boolean): void {
@@ -64,10 +70,18 @@ export default class ProcedureMain extends ProcedureBase {
         }
 
         super.onLeave(owner, shutdown);
+
+        if (this.m_iMainFormId) {
+            GameEntry.ui.closeUIForm(this.m_iMainFormId);
+        }
     }
 
     protected onUpdate(owner: ProcedureOwner, elapsed: number, realElapsed: number): void {
         super.onUpdate(owner, elapsed, realElapsed);
+
+        if (this.m_bGoToMenu) {
+            this.m_pCurrentGame && (this.m_pCurrentGame.gameOver = true);
+        }
 
         if (this.m_pCurrentGame && !this.m_pCurrentGame.gameOver) {
             this.m_pCurrentGame.update(elapsed, realElapsed);

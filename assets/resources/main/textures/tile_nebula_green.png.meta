@@ -1,14 +1,13 @@
 {
-  "ver": "2.3.1",
+  "ver": "2.2.0",
   "uuid": "7e64c482-8b0a-43b1-9fc6-cf92830d30ce",
   "type": "sprite",
   "wrapMode": "repeat",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
-  "platformSettings": {},
   "subMetas": {
     "tile_nebula_green": {
-      "ver": "1.0.4",
+      "ver": "1.0.3",
       "uuid": "adccee3f-ae33-4c16-a14f-3b7ae8da775e",
       "rawTextureUuid": "7e64c482-8b0a-43b1-9fc6-cf92830d30ce",
       "trimType": "auto",

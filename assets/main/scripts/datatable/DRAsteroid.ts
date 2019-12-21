@@ -10,6 +10,7 @@ export default class DRAsteroid extends DataRowBase {
     angularSpeed!: number;
     deadEffectId!: number;
     deadSoundId!: number;
+    score!: number;
 
     parseRowString(columns: string[]): boolean {
         if (!columns || !columns.length)
@@ -24,6 +25,7 @@ export default class DRAsteroid extends DataRowBase {
         this.angularSpeed = parseFloat(columns[i++]);
         this.deadEffectId = parseInt(columns[i++]);
         this.deadSoundId = parseInt(columns[i++]);
+        this.score = parseInt(columns[i++]);
 
         return true;
     }

@@ -48,6 +48,15 @@ export default class Asteroid extends TargetableObject {
         GameEntry.entityExt.showEffect(v_pEffectData);
 
         GameEntry.soundExt.playSound(this.m_pAsteroidData.deadSoundId);
+
+        let v_iScoreGen: number = this.m_pAsteroidData.score;
+        let v_sNodePath: string = 'SurvivalGame/TotalScore';
+        let v_pScoreNode: atsframework.DataNode = GameEntry.dataNode.getOrAddNode(v_sNodePath);
+        let v_iScoreTotal: number = v_pScoreNode.getData();
+        if (undefined == v_iScoreTotal || null == v_iScoreTotal)
+            v_iScoreTotal = 0;
+
+        GameEntry.dataNode.setData<number>(v_sNodePath, v_iScoreTotal + v_iScoreGen);
     }
 
     private m_pImpactData!: ImpactData;
