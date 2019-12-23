@@ -6,7 +6,7 @@ const ProcedureBase = atsframework.ProcedureBase;
 
 type ProcedureOwner = atsframework.Fsm<atsframework.ProcedureManager>;
 
-@procedure
+@procedure('ProcedureSplash')
 export default class ProcedureSplash extends ProcedureBase{
 
     protected onInit(owner: ProcedureOwner): void {

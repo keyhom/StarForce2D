@@ -22,7 +22,7 @@ type ProcedureOwner = atsframework.Fsm<atsframework.ProcedureManager>;
 
 type DataRowGenerator = new () => atsframework.IDataRow;
 
-@procedure
+@procedure('ProcedurePreload')
 export default class ProcedurePreload extends ProcedureBase {
 
     private m_pDataTableNames: { [key: string]: DataRowGenerator } = {

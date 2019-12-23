@@ -10,7 +10,7 @@ type ProcedureOwner = atsframework.Fsm<atsframework.ProcedureManager>;
 
 const GameOverDelayed: number = 2;
 
-@procedure
+@procedure('ProcedureMain')
 export default class ProcedureMain extends ProcedureBase {
 
     private m_bGoToMenu: boolean = false;

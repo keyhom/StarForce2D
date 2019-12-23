@@ -8,7 +8,7 @@ const ProcedureBase = atsframework.ProcedureBase;
 
 type ProcedureOwner = atsframework.Fsm<atsframework.ProcedureManager>;
 
-@procedure
+@procedure('ProcedureLanuch')
 export default class ProcedureLanuch extends ProcedureBase {
 
     protected onInit(owner: ProcedureOwner): void {

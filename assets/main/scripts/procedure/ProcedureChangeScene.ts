@@ -10,7 +10,7 @@ type ProcedureOwner = atsframework.Fsm<atsframework.ProcedureManager>;
 
 const MenuSceneId: number = 1;
 
-@procedure
+@procedure('ProcedureChangeScene')
 export default class ProcedureChangeScene extends ProcedureBase {
 
     private m_bChangeToMenu: boolean = false;

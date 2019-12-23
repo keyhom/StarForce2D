@@ -979,7 +979,7 @@ declare module "FsmComponent" {
 
 declare module "ProcedureComponent" {
     import FrameworkComponent from "FrameworkComponent";
-    export function procedure(constructor: Function);
+    export function procedure(name: string): Function;
     export default class ProcedureComponent extends FrameworkComponent {
         availableProcedureNames: string[];
         entranceProcedureName: string;

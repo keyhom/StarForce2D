@@ -10,7 +10,7 @@ const ProcedureBase = atsframework.ProcedureBase;
 
 type ProcedureOwner = atsframework.Fsm<atsframework.ProcedureManager>;
 
-@procedure
+@procedure('ProcedureMenu')
 export default class ProcedureMenu extends ProcedureBase {
 
     private m_bStartGame: boolean = false;
