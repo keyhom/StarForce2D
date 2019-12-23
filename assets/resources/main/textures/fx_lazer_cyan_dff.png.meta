@@ -1,14 +1,13 @@
 {
-  "ver": "2.3.1",
+  "ver": "2.2.0",
   "uuid": "5834c7ef-51a4-4579-a5b3-b273a76e031b",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
-  "platformSettings": {},
   "subMetas": {
     "fx_lazer_cyan_dff": {
-      "ver": "1.0.4",
+      "ver": "1.0.3",
       "uuid": "aae00dc1-4319-4230-9d1b-b6a0d7b4b7f7",
       "rawTextureUuid": "5834c7ef-51a4-4579-a5b3-b273a76e031b",
       "trimType": "auto",

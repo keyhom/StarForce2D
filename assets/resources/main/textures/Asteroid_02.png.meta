@@ -1,14 +1,13 @@
 {
-  "ver": "2.3.1",
+  "ver": "2.2.0",
   "uuid": "cf4351ea-034a-4131-b85e-ef1497b97df0",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
-  "platformSettings": {},
   "subMetas": {
     "Asteroid_02": {
-      "ver": "1.0.4",
+      "ver": "1.0.3",
       "uuid": "e4fe28b0-ae9b-4670-8317-6906474bcc5a",
       "rawTextureUuid": "cf4351ea-034a-4131-b85e-ef1497b97df0",
       "trimType": "auto",
