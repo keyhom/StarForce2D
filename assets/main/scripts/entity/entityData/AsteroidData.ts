@@ -11,6 +11,7 @@ export default class AsteroidData extends TargetableObjectData {
     private m_fAngularSpeed: number = 0;
     private m_iDeadEffectId: number = 0;
     private m_iDeadSoundId: number = 0;
+    private m_iScore: number = 0;
 
     constructor(entityId: number, typeId: number) {
         super(entityId, typeId, CampType.Neutral);
@@ -28,6 +29,7 @@ export default class AsteroidData extends TargetableObjectData {
         this.m_fAngularSpeed = v_pDrAsteroid.angularSpeed;
         this.m_iDeadEffectId = v_pDrAsteroid.deadEffectId;
         this.m_iDeadSoundId = v_pDrAsteroid.deadSoundId;
+        this.m_iScore = v_pDrAsteroid.score;
     }
 
     get maxHp(): number { return this.m_iMaxHp; }
@@ -36,5 +38,6 @@ export default class AsteroidData extends TargetableObjectData {
     get angularSpeed(): number { return this.m_fAngularSpeed; }
     get deadEffectId(): number { return this.m_iDeadEffectId; }
     get deadSoundId(): number { return this.m_iDeadSoundId; }
+    get score(): number { return this.m_iScore; }
 
 } // class AsteroidData

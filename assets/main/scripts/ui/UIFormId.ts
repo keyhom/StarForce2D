@@ -3,7 +3,8 @@ export enum UIFormId {
     DialogForm,
     MenuForm,
     SettingForm,
-    AboutForm
+    AboutForm,
+    MainForm
 } // enum UIFormId
 
 export function uiFormAssetName(uiFormId: UIFormId): string {
