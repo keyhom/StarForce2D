@@ -425,6 +425,86 @@ declare module "EventComponent" {
     }
 }
 
+declare module "NetworkChannelHelperBase" {
+    export default abstract class NetworkChannelHelperBase extends cc.Component implements atsframework.INetworkChannelHelper {
+
+        channelOpened: atsframework.NetworkConnectedEventHandler;
+        channelClosed: atsframework.NetworkClosedEventHandler;
+        channelError: atsframework.NetworkErrorEventHandler;
+
+        abstract get id(): number;
+        abstract get isOpen(): boolean;
+        abstract get isActive(): boolean;
+        abstract get isWritable(): boolean;
+        abstract get isReadable(): boolean;
+
+        abstract connect(host: string, port: number): void;
+        abstract connect(host: string, port: number, timeout: number): void;
+
+        abstract disconnect(): void;
+        abstract close(): void;
+        abstract read(): void;
+        abstract write(msg: any): void;
+        abstract flush(): void;
+        abstract writeAndFlush(msg: any): void;
+
+        abstract get packetHeaderLength(): number;
+        abstract initialize(networkChannel: atsframework.NetworkChannel): void;
+        abstract shutdown(): void;
+        abstract sendHeartBeat(): boolean;
+        abstract serialize<T>(packet: T): boolean;
+
+    } // class NetworkChannelHelperBase
+} // module "NetworkChannelHelperBase
+
+declare module "NetworkComponent" {
+    import FrameworkComponent from "FrameworkComponent";
+
+    export let NetworkConnectedEventId = 'NetworkConnected';
+    export let NetworkClosedEventId = 'NetworkClosed';
+    export let NetworkMissHeartBeatEventId = 'NetworkMissHeartBeat';
+    export let NetworkErrorEventId = 'NetworkError';
+    export let NetworkCustomErrorEventId = 'NetworkCustomError';
+
+    export type NetworkConnectedEventArgs = {
+        channel: atsframework.NetworkChannel,
+        userData?: atsframework.UserData
+    };
+
+    export type NetworkClosedEventArgs = {
+        channel: atsframework.NetworkChannel
+    };
+
+    export type NetworkMissHeartBeatEventArgs = {
+        channel: atsframework.NetworkChannel,
+        missCount: number
+    };
+
+    export type NetworkCustomErrorEventArgs = {
+        channel: atsframework.NetworkChannel,
+        customErrorData?: any
+    };
+
+    export default class NetworkComponent extends FrameworkComponent {
+
+        onLoad(): void;
+        onDestroy(): void;
+        start(): void;
+
+        hasNetworkChannel(name: string): boolean;
+        getNetworkChannel(name: string): atsframework.NetworkChannel;
+
+        getAllNetworkChannels(): atsframework.NetworkChannel[];
+        getAllNetworkChannels(resutls: atsframework.NetworkChannel[]): atsframework.NetworkChannel[];
+
+        createNetworkChannel(name: string): atsframework.NetworkChannel;
+        createNetworkChannel(name: string, networkChannelHelper: atsframework.INetworkChannelHelper): atsframework.NetworkChannel;
+
+        destroyNetworkChannel(name: string): boolean;
+
+    } // class NetworkComponent
+} // module NetworkComponent
+
 declare module "ObjectPoolComponent" {
     import FrameworkComponent from "FrameworkComponent";
 

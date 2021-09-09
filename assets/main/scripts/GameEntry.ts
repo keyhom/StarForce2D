@@ -13,9 +13,11 @@ import SoundComponent from "SoundComponent";
 import SettingComponent from "SettingComponent";
 import DataTableComponent from "DataTableComponent";
 import EntityComponent from "EntityComponent";
+import NetworkComponent from "NetworkComponent";
 import SoundExtension from "./sound/SoundExtension";
 import ObjectPoolComponent from "ObjectPoolComponent";
 import EntityExtension from "./entity/EntityExtension";
+import NetworkExtension from "./network/NetworkExtension";
 
 const {ccclass, property} = cc._decorator;
 
@@ -50,6 +52,10 @@ export default class GameEntry extends cc.Component {
 
     static get fsm(): FsmComponent {
         return this.m_pCacheArr[8] as FsmComponent;
+    }
+
+    static get network(): NetworkComponent {
+        return this.m_pCacheArr[10] as NetworkComponent;
     }
 
     static get objectPool(): ObjectPoolComponent {
@@ -92,6 +98,10 @@ export default class GameEntry extends cc.Component {
         return this.m_pCacheArr[16] as SettingComponent;
     }
 
+    static get networkExt(): NetworkExtension {
+        return this.m_pCacheArr[23] as NetworkExtension;
+    }
+
     onLoad(): void {
         cc.game.addPersistRootNode(this.node);
     }
@@ -107,7 +117,7 @@ export default class GameEntry extends cc.Component {
         GameEntry.m_pCacheArr.push(FrameworkComponent.getComponent(EventComponent)); // 7.Event
         GameEntry.m_pCacheArr.push(FrameworkComponent.getComponent(FsmComponent)); // 8.FSM
         GameEntry.m_pCacheArr.push(null); // 9.Localization
-        GameEntry.m_pCacheArr.push(null); // 10.Network
+        GameEntry.m_pCacheArr.push(FrameworkComponent.getComponent(NetworkComponent)); // 10.Network
         GameEntry.m_pCacheArr.push(FrameworkComponent.getComponent(ObjectPoolComponent)); // 11.ObjectPool
         GameEntry.m_pCacheArr.push(FrameworkComponent.getComponent(ProcedureComponent)); // 12.ProcedureComponent
         GameEntry.m_pCacheArr.push(null); // 13.ReferencePool
@@ -122,6 +132,7 @@ export default class GameEntry extends cc.Component {
         GameEntry.m_pCacheArr.push(FrameworkComponent.getComponent(BuiltinDataComponent)); // 20.BuiltinDataComponent
         GameEntry.m_pCacheArr.push(FrameworkComponent.getComponent(SoundExtension)); // 21.SoundExtension
         GameEntry.m_pCacheArr.push(FrameworkComponent.getComponent(EntityExtension)); // 22.EntityExtension
+        GameEntry.m_pCacheArr.push(FrameworkComponent.getComponent(NetworkExtension)); // 22.NetworkExtension
     }
 
     onDestroy(): void {

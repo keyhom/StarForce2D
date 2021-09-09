@@ -19,7 +19,8 @@ export default class ProcedureSplash extends ProcedureBase{
         super.onUpdate(owner, elapsed, realElapsed);
 
         // TODO: A fixed splash here.
-        this.changeState(owner, CC_DEBUG ? ProcedurePreload : ProcedureCheckVersion);
+        // this.changeState(owner, CC_DEBUG ? ProcedurePreload : ProcedureCheckVersion);
+        this.changeState(owner, ProcedureCheckVersion);
     }
 
 } // class ProcedureSplash
